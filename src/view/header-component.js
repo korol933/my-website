@@ -1,4 +1,4 @@
-import { createElement } from './render1.js';
+import { createElement } from './render.js';
 
 function createHeaderComponentTemplate() {
     return (`
