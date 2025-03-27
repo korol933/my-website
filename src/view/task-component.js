@@ -1,4 +1,4 @@
-import { createElement } from '../framework/render.js';
+import { createElement } from './render.js';
 
 function createTaskComponentTemplate(taskText) {
     return `<li class="task" style="display: flex; align-items: center; justify-content: space-between; padding: 10px; border-radius: 5px; background: white; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); margin-bottom: 10px; width: 100%;">${taskText}</li>`;
@@ -31,7 +31,7 @@ import FormAddTaskComponent from './view/form-add-task-component.js';
 import TaskBoardComponent from './view/task-board-component.js';
 import TaskListComponent from './view/task-list-component.js';
 import TaskComponent from './view/task-component.js';
-import { render } from './framework/render.js';
+import { render } from './render.js';
 
 const bodyContainer = document.querySelector('.board-app');
 const formContainer = document.querySelector('.add-task');
