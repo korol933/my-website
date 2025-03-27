@@ -26,13 +26,3 @@ taskLists.forEach(taskList => {
         render(new TaskComponent(`Задача ${i + 1}`), taskList.getElement());
     }
 });
-
-// Улучшение стилей контейнеров
-const taskBoard = document.querySelector('.taskboard');
-if (taskBoard) {
-    taskBoard.style.cssText = 'display: flex; justify-content: space-between; gap: 20px; width: 100%;';
-}
-
-document.querySelectorAll('.task-list').forEach(taskList => {
-    taskList.style.cssText = 'display: flex; flex-direction: column; gap: 10px; width: 100%;';
-});
