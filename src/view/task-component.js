@@ -1,11 +1,10 @@
-import {createElement} from '../framework/render.js';
+import { createElement } from '../framework/render.js';
 
 function createTaskComponentTemplate(task) {
   return `
-    <div class="task" data-id="${task.id}" data-priority="${task.priority}">
+    <div class="task" data-id="${task.id}">
       <h3>${task.title}</h3>
-      <p>${task.description}</p>
-      <div class="task-priority">Приоритет: ${task.priority}</div>
+      <p>Status: ${task.status}</p>
     </div>
   `;
 }

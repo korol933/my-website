@@ -1,33 +1,30 @@
 import TaskListComponent from '../view/js/tasklist-component.js';
 import TaskComponent from '../view/js/task-component.js';
 import TaskBoardComponent from '../view/js/taskboard-component.js';
-import { render, RenderPosition } from '../framework/render.js';
-import TasksModel from '../model/task-model.js';
+import { render } from '../framework/render.js';
 
-export default class TasksBoardPresenter {
+export default class TaskBoardPresenter {
   #boardContainer = null;
-  #tasksModel = null;
-  #tasksBoardComponent = null;
-  
-  constructor({ boardContainer, tasksModel }) {
+  #taskModel = null;
+  #taskBoardComponent = new TaskBoardComponent();
+
+  constructor(boardContainer, taskModel) {
     this.#boardContainer = boardContainer;
-    this.#tasksModel = tasksModel;
-    this.#tasksBoardComponent = new TaskBoardComponent();
+    this.#taskModel = taskModel;
   }
 
   init() {
-    render(this.#tasksBoardComponent, this.#boardContainer);
+    render(this.#taskBoardComponent, this.#boardContainer);
     
     const statuses = ['backlog', 'inProgress', 'done', 'trash'];
     
     statuses.forEach((status) => {
-      const tasks = this.#tasksModel.getTasksByStatus(status);
+      const tasks = this.#taskModel.getTasksByStatus(status);
       const taskListComponent = new TaskListComponent(status);
-      
-      render(taskListComponent, this.#tasksBoardComponent.getElement());
+      render(taskListComponent, this.#taskBoardComponent.getElement());
       
       tasks.forEach((task) => {
-        const taskComponent = new TaskComponent(task.title); // Передаем title задачи
+        const taskComponent = new TaskComponent(task);
         render(taskComponent, taskListComponent.getElement().querySelector('.task-container'));
       });
     });

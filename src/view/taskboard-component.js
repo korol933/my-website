@@ -1,12 +1,8 @@
-import {createElement} from '../framework/render.js';
-
-function createTaskBoardComponentTemplate() {
-  return `<div class="task-board"></div>`;
-}
+import { createElement } from '../framework/render.js';
 
 export default class TaskBoardComponent {
   getTemplate() {
-    return createTaskBoardComponentTemplate();
+    return '<div class="task-board"></div>';
   }
 
   getElement() {

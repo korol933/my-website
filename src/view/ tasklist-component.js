@@ -1,4 +1,4 @@
-import {createElement} from '../framework/render.js';
+import { createElement } from '../framework/render.js';
 
 function createTaskListComponentTemplate(status) {
   const titles = {
@@ -12,7 +12,7 @@ function createTaskListComponentTemplate(status) {
     <div class="column ${status}">
       <div class="column-title">${titles[status]}</div>
       <div class="task-container"></div>
-      ${status === 'trash' ? '<div class="clear-btn">✖️ Очистить</div>' : ''}
+      ${status === 'trash' ? '<button class="clear-btn">Очистить корзину</button>' : ''}
     </div>
   `;
 }
