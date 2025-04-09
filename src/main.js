@@ -1,4 +1,4 @@
-import HeaderComponent from './view/js/header-component.js';
+import HeaderComponent from './view/header-component.js';
 import TaskBoardPresenter from './presenter/tasks-board-presenter.js';
 import { render, RenderPosition } from './framework/render.js';
 import TaskModel from './model/task-model.js';

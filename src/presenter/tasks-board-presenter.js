@@ -1,6 +1,6 @@
-import TaskListComponent from '../view/js/tasklist-component.js';
-import TaskComponent from '../view/js/task-component.js';
-import TaskBoardComponent from '../view/js/taskboard-component.js';
+import TaskListComponent from '../view/tasklist-component.js';
+import TaskComponent from '../view/task-component.js';
+import TaskBoardComponent from '../view/taskboard-component.js';
 import { render } from '../framework/render.js';
 
 export default class TaskBoardPresenter {
