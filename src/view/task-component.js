@@ -2,9 +2,12 @@ import { createElement } from '../framework/render.js';
 
 function createTaskComponentTemplate(task) {
   return `
-    <div class="task" data-id="${task.id}">
-      <h3>${task.title}</h3>
-      <p>Status: ${task.status}</p>
+    <div class="taskboard_item task task--${task.status}">
+      <div class="task_body">
+        <p class="task--view">${task.title}</p>
+        <input type="text" class="task--input" value="${task.title}" />
+      </div>
+      <button aria-label="Изменить" class="task__edit" type="button"></button>
     </div>
   `;
 }

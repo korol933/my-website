@@ -1,18 +1,12 @@
 import { createElement } from '../framework/render.js';
+import { StatusLabel } from '../const.js';
 
 function createTaskListComponentTemplate(status) {
-  const titles = {
-    'backlog': 'Бэклог',
-    'inProgress': 'В процессе',
-    'done': 'Готово',
-    'trash': 'Корзина'
-  };
-
   return `
     <div class="column ${status}">
-      <div class="column-title">${titles[status]}</div>
+      <div class="column-title">${StatusLabel[status]}</div>
       <div class="task-container"></div>
-      ${status === 'trash' ? '<button class="clear-btn">Очистить корзину</button>' : ''}
+      ${status === 'basket' ? '<button class="clear-btn">✖️ Очистить корзину</button>' : ''}
     </div>
   `;
 }
