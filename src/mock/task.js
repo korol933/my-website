@@ -45,3 +45,15 @@ export const tasks = [
     status: "trash"
   }
 ];
+export const statuses = {
+  backlog: "Бэклог",
+  inProgress: "В процессе",
+  done: "Готово",
+  trash: "Корзина"
+};
+
+export const priorities = {
+  low: "Низкий",
+  medium: "Средний",
+  high: "Высокий"
+};
