@@ -1,28 +1,53 @@
-import TaskListComponent from '../view/tasklist-component.js';
-import TaskComponent from '../view/task-component.js';
-import TaskBoardComponent from '../view/taskboard-component.js';
+import { TaskboardComponent } from '../view/taskboard-component.js';
+import { TasklistComponent } from '../view/tasklist-component.js';
+import { TaskComponent } from '../view/task-component.js';
+import { NoTasksComponent } from '../view/no-tasks-component.js';
+import { TaskModel } from '../model/task-model.js';
 import { render } from '../framework/render.js';
-import { Status } from '../const.js';
+import { tasks } from '../mock/task.js';
 
-export default class TaskBoardPresenter {
-  constructor(boardContainer, taskModel) {
-    this.boardContainer = boardContainer;
-    this.taskModel = taskModel;
-    this.taskBoardComponent = new TaskBoardComponent();
+export class TasksBoardPresenter {
+  #taskModel = null;
+  #taskboardComponent = null;
+  #tasklistComponent = null;
+  #noTasksComponent = new NoTasksComponent();
+
+  constructor({ container }) {
+    this.#taskModel = new TaskModel(tasks);
+    this.#taskboardComponent = new TaskboardComponent();
+    this.container = container;
   }
 
   init() {
-    render(this.taskBoardComponent, this.boardContainer);
+    this.#renderBoard();
+  }
+
+  #renderBoard() {
+    render(this.#taskboardComponent, this.container);
+    this.#renderTasklist();
+  }
+
+  #renderTasklist() {
+    this.#tasklistComponent = new TasklistComponent();
+    render(this.#tasklistComponent, this.#taskboardComponent.element);
+    this.#renderTasks();
+  }
+
+  #renderTasks() {
+    const tasks = this.#taskModel.tasks;
     
-    Object.values(Status).forEach((status) => {
-      const tasks = this.taskModel.getTasksByStatus(status);
-      const taskListComponent = new TaskListComponent(status);
-      render(taskListComponent, this.taskBoardComponent.getElement());
-      
-      tasks.forEach((task) => {
-        const taskComponent = new TaskComponent(task);
-        render(taskComponent, taskListComponent.getElement().querySelector('.task-container'));
-      });
+    if (tasks.length === 0) {
+      this.#renderNoTasks();
+      return;
+    }
+
+    tasks.forEach((task) => {
+      const taskComponent = new TaskComponent(task);
+      render(taskComponent, this.#tasklistComponent.element);
     });
+  }
+
+  #renderNoTasks() {
+    render(this.#noTasksComponent, this.#tasklistComponent.element);
   }
 }

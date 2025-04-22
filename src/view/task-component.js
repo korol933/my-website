@@ -1,34 +1,28 @@
-import { createElement } from '../framework/render.js';
+import { AbstractComponent } from '../framework/abstract-component.js';
 
-function createTaskComponentTemplate(task) {
-  return `
-    <div class="taskboard_item task task--${task.status}">
-      <div class="task_body">
-        <p class="task--view">${task.title}</p>
-        <input type="text" class="task--input" value="${task.title}" />
-      </div>
-      <button aria-label="Изменить" class="task__edit" type="button"></button>
-    </div>
-  `;
-}
+export class TaskComponent extends AbstractComponent {
+  #task = null;
 
-export default class TaskComponent {
   constructor(task) {
-    this.task = task;
+    super();
+    this.#task = task;
   }
 
-  getTemplate() {
-    return createTaskComponentTemplate(this.task);
+  get template() {
+    return `
+      <div class="task">
+        <h3>${this.#task.title}</h3>
+        <p>${this.#task.description}</p>
+      </div>
+    `;
   }
-
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
-    }
-    return this.element;
-  }
-
-  removeElement() {
-    this.element = null;
+  get template() {
+    return `
+      <div class="task" data-task-id="${this.#task.id}" data-status="${this.#task.status}">
+        <span class="task__status">${this.#task.status}</span>
+        <h3 class="task__title">${this.#task.title}</h3>
+        <p class="task__description">${this.#task.description}</p>
+      </div>
+    `;
   }
 }

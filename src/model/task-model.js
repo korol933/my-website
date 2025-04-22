@@ -1,14 +1,41 @@
-import { tasks } from '../mock/task.js';
-import { Status } from '../const.js';
+export class TaskModel {
+  #boardTasks = [];
 
-export default class TaskModel {
-  #tasks = [...tasks];
+  constructor(initialTasks = []) {
+    this.#boardTasks = initialTasks;
+  }
 
-  getTasks() {
-    return this.#tasks;
+  get tasks() {
+    return this.#boardTasks;
   }
 
   getTasksByStatus(status) {
-    return this.#tasks.filter(task => task.status === status);
+    return this.#boardTasks.filter(task => task.status === status);
+  }
+
+  addTask(task) {
+    this.#boardTasks.push({
+      ...task,
+      status: task.status || 'backlog' // Статус по умолчанию
+    });
+  }
+
+  updateTaskStatus(taskId, newStatus) {
+    const task = this.#boardTasks.find(t => t.id === taskId);
+    if (task) {
+      task.status = newStatus;
+    }
+  }
+
+  deleteTask(taskId) {
+    this.#boardTasks = this.#boardTasks.filter(task => task.id !== taskId);
+  }
+
+  clearTasks() {
+    this.#boardTasks = [];
+  }
+
+  clearTasksByStatus(status) {
+    this.#boardTasks = this.#boardTasks.filter(task => task.status !== status);
   }
 }
