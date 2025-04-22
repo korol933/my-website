@@ -1,16 +1,36 @@
 import { TasksBoardPresenter } from './presenter/tasks-board-presenter.js';
+import { tasks } from './mock/task.js';
 
 const boardContainer = document.querySelector('.app');
-const boardPresenter = new TasksBoardPresenter({ container: boardContainer });
+const boardPresenter = new TasksBoardPresenter({ 
+  container: boardContainer,
+  initialTasks: tasks
+});
 
+// Инициализация презентера
 boardPresenter.init();
 
-// Для тестирования можно добавить начальные задачи
-boardPresenter.initWithMockData = function() {
-  this.#taskModel.addTask({ title: 'Task 1', description: 'Description 1' });
-  this.#taskModel.addTask({ title: 'Task 2', description: 'Description 2' });
-  this.#renderTasks();
+// Пример использования геттера model:
+const currentTasks = boardPresenter.model.tasks; // Получаем задачи через геттер
+console.log('Текущие задачи:', currentTasks);
+
+// Добавление новой задачи через презентер
+boardPresenter.model.addTask({
+  id: Date.now().toString(),
+  title: "Новая задача через геттер",
+  status: "backlog",
+  description: "Добавлено из main.js"
+});
+
+// Для тестирования можно добавить метод-обертку в презентер:
+boardPresenter.addTestTask = function(taskData) {
+  this.model.addTask(taskData);
+  // Здесь должен быть вызов метода рендеринга, если нужно
+  // this.#renderTasks(); // Раскомментировать, если нужен immediate re-render
 };
 
-// Раскомментируйте для теста с данными
-// boardPresenter.initWithMockData();
+boardPresenter.addTestTask({
+  id: "test-1",
+  title: "Тестовая задача",
+  status: "inProgress"
+});

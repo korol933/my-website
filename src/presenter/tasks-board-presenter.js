@@ -4,7 +4,6 @@ import { TaskComponent } from '../view/task-component.js';
 import { NoTasksComponent } from '../view/no-tasks-component.js';
 import { TaskModel } from '../model/task-model.js';
 import { render } from '../framework/render.js';
-import { tasks } from '../mock/task.js';
 
 export class TasksBoardPresenter {
   #taskModel = null;
@@ -12,10 +11,15 @@ export class TasksBoardPresenter {
   #tasklistComponent = null;
   #noTasksComponent = new NoTasksComponent();
 
-  constructor({ container }) {
-    this.#taskModel = new TaskModel(tasks);
+  constructor({ container, initialTasks = [] }) {
+    this.#taskModel = new TaskModel(initialTasks);
     this.#taskboardComponent = new TaskboardComponent();
     this.container = container;
+  }
+
+  // Геттер для безопасного доступа к модели
+  get model() {
+    return this.#taskModel;
   }
 
   init() {
