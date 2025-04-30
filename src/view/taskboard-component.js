@@ -1,18 +1,10 @@
 import { createElement } from '../framework/render.js';
 
-function createTaskBoardComponentTemplate() {
-  return `
-    <div class="task-board">
-      <!-- Колонки будут добавлены через tasklist-component -->
-    </div>
-  `;
-}
-
 export default class TaskBoardComponent {
   getTemplate() {
-    return createTaskBoardComponentTemplate();
+    return `<div class="taskboard-component"></div>`;
   }
-  
+
   getElement() {
     if (!this.element) {
       this.element = createElement(this.getTemplate());
