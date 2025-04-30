@@ -19,6 +19,7 @@ body {
   font-weight: bold;
   border-radius: 10px;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .task-input {
@@ -38,30 +39,27 @@ body {
 /* Обновлённые стили для колонок */
 .column {
   flex: 1;
+  background: #f5f5f5;
   padding: 15px;
-  margin: 0 0 8px 0;
   border-radius: 10px;
-  align-items: center;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-/* Стили для заголовков колонок (как у задач) */
+/* Стили для заголовков колонок */
 .column-title {
+  padding: 10px 15px;
+  margin: 0 0 15px 0;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: left;
   background: white;
-  padding: 15px;
-  margin: 0 0 8px 0;
-  border-radius: 10px;
-  min-height: 30px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   border-left: 5px solid;
-  display: flex;
-  align-items: center;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  font-weight: bold;  
 }
 
 /* Цвета рамок для заголовков */
 .backlog .column-title { border-left-color: #78858b; }
-.inProgress .column-title { border-left-color: #42a5f5; }
+.processing .column-title { border-left-color: #42a5f5; }
 .done .column-title { border-left-color: #66bb6a; }
 .trash .column-title { border-left-color: #ef5350; }
 
@@ -69,23 +67,22 @@ body {
 .tasks-container {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px; /* Расстояние между задачами */
 }
 
 /* Стили для задач */
 .task {
   background: white;
   padding: 15px;
-  border-radius: 10px;
-  margin: 0 0 8px 0;
-  min-height: 30px;
+  border-radius: 5px;
   border-left: 5px solid;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  text-align: left;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
 /* Цвета рамок для задач */
 .backlog .task { border-left-color: #78858b; }
-.inProgress .task { border-left-color: #42a5f5; }
+.processing .task { border-left-color: #42a5f5; }
 .done .task { border-left-color: #66bb6a; }
 .trash .task { border-left-color: #ef5350; }
 
@@ -97,11 +94,11 @@ body {
   color: white;
   cursor: pointer;
   margin-top: 15px;
-  border-radius: 10px;
+  border-radius: 5px;
   border: none;
   font-size: 14px;
   width: 100%;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
 /* Дополнительные стили для формы ввода */
