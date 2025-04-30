@@ -3,7 +3,7 @@ import { createElement } from '../framework/render.js';
 function createTaskBoardComponentTemplate() {
   return `
     <div class="task-board">
-      <!-- Колонки будут добавлены через tasklist-component -->
+
     </div>
   `;
 }
@@ -12,7 +12,7 @@ export default class TaskBoardComponent {
   getTemplate() {
     return createTaskBoardComponentTemplate();
   }
-  
+
   getElement() {
     if (!this.element) {
       this.element = createElement(this.getTemplate());

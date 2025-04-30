@@ -12,7 +12,8 @@ export default class TaskComponent {
   getTemplate() {
     return createTaskComponentTemplate(this.text);
   }
- getElement() {
+  
+  getElement() {
     if (!this.element) {
       this.element = createElement(this.getTemplate());
     }
