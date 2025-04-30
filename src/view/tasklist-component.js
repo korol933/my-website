@@ -1,33 +1,39 @@
 import { createElement } from '../framework/render.js';
-import { StatusLabel } from '../const.js';
+import { Status, StatusLabel } from '../const.js';
+import TaskComponent from './task-component.js';
 
-function createTaskListComponentTemplate(status) {
+function createTaskListComponentTemplate(title, tasks = []) {
+  const isTRASHColumn = title === StatusLabel[Status.TRASH];
   return `
-    <div class="column ${status}">
-      <div class="column-title">${StatusLabel[status]}</div>
-      <div class="task-container"></div>
-      ${status === 'basket' ? '<button class="clear-btn">✖️ Очистить корзину</button>' : ''}
+    <div class="column ${title.toLowerCase().replace(' ', '-')}">
+      <div class="column-title">${title}</div>
+      <div id="${title.toLowerCase().replace(' ', '-')}-tasks">
+        ${tasks.map(task => new TaskComponent(task).getTemplate()).join('')}
+      </div>
+      ${isTRASHColumn ? '<button class="clear-btn">✖️ Очистить</button>' : ''}
     </div>
   `;
 }
 
 export default class TaskListComponent {
-  constructor(status) {
-    this.status = status;
+  constructor(title, tasks) {
+    this._title = title;
+    this._tasks = tasks;
+    this._element = null;
   }
 
   getTemplate() {
-    return createTaskListComponentTemplate(this.status);
+    return createTaskListComponentTemplate(this._title, this._tasks);
   }
 
   getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
     }
-    return this.element;
+    return this._element;
   }
 
   removeElement() {
-    this.element = null;
+    this._element = null;
   }
 }

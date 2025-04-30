@@ -1,28 +1,31 @@
-import TaskListComponent from '../view/tasklist-component.js';
-import TaskComponent from '../view/task-component.js';
+import { Status, StatusLabel } from '../const.js';
 import TaskBoardComponent from '../view/taskboard-component.js';
+import TaskListComponent from '../view/tasklist-component.js';
 import { render } from '../framework/render.js';
-import { Status } from '../const.js';
 
-export default class TaskBoardPresenter {
-  constructor(boardContainer, taskModel) {
-    this.boardContainer = boardContainer;
-    this.taskModel = taskModel;
-    this.taskBoardComponent = new TaskBoardComponent();
+export default class TasksBoardPresenter {
+  constructor(taskModel, container) {
+    this._taskModel = taskModel;
+    this._container = container;
+    this._taskBoardComponent = new TaskBoardComponent();
   }
 
   init() {
-    render(this.taskBoardComponent, this.boardContainer);
-    
-    Object.values(Status).forEach((status) => {
-      const tasks = this.taskModel.getTasksByStatus(status);
-      const taskListComponent = new TaskListComponent(status);
-      render(taskListComponent, this.taskBoardComponent.getElement());
-      
-      tasks.forEach((task) => {
-        const taskComponent = new TaskComponent(task);
-        render(taskComponent, taskListComponent.getElement().querySelector('.task-container'));
-      });
+    const tasks = this._taskModel.getTasks();
+    render(this._taskBoardComponent, this._container);
+
+    const statusGroups = {
+      [Status.BACKLOG]: this._taskModel.getTasksByStatus(Status.BACKLOG),
+      [Status.PROCESSING]: this._taskModel.getTasksByStatus(Status.PROCESSING),
+      [Status.DONE]: this._taskModel.getTasksByStatus(Status.DONE),
+      [Status.TRASH]: this._taskModel.getTasksByStatus(Status.TRASH)
+    };
+
+    Object.entries(statusGroups).forEach(([status, tasks]) => {
+      render(
+        new TaskListComponent(StatusLabel[status], tasks),
+        this._taskBoardComponent.getElement()
+      );
     });
   }
 }
