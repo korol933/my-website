@@ -38,8 +38,12 @@ body {
 /* Обновлённые стили для колонок */
 .column {
   flex: 1;
-  padding: 0 !important; /* Убираем внутренние отступы */
-  min-height: auto !important; /* Убираем фиксированную высоту */
+  padding: 15px;
+  margin: 0 0 8px 0;
+  border-radius: 10px;
+  border-left: 5px solid;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 /* Стили для заголовков колонок (как у задач) */
@@ -53,9 +57,7 @@ body {
   display: flex;
   align-items: center;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  font-weight: bold;
-  color: #333 !important; /* Переопределяем цвет текста */
-  text-align: left !important; /* Выравнивание по левому краю */
+  font-weight: bold;  
 }
 
 /* Цвета рамок для заголовков */
