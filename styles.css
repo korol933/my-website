@@ -17,6 +17,7 @@ body {
     font-size: 20px;
     font-weight: bold;
     border-radius: 10px;
+    margin-bottom: 20px;
 }
 
 .task-input {
@@ -64,22 +65,14 @@ button {
 
 .column {
     flex: 1;
-    padding: 10px;
+    padding: 15px;
     border-radius: 10px;
+    background-color: #f5f5f5; 
 }
 
 .column-title {
-    font-weight: bold;
-    padding: 15px;
-    border-radius: 10px;
-    display: inline-block;
-    margin-bottom: 10px;
+    display: none;
 }
-
-.backlog .column-title { background: #78858b; color: #2c3238; }
-.in-progress .column-title { background: #afdafc; color: #42aaff; }
-.done .column-title { background: #7de8d4; color: #00a693; }
-.trash .column-title { background: #e57373; color: #914834; }
 
 .task {
     display: flex;
@@ -89,16 +82,18 @@ button {
     margin: 8px 0;
     border-radius: 10px;
     min-height: 30px;
-    border-left: 5px solid;
+    border-left: 5px solid #78858b; 
 }
 
-.backlog .task { border-left-color: #78858b; }
-.in-progress .task { border-left-color: #afdafc; }
-.done .task { border-left-color: #7de8d4; }
-.trash .task { border-left-color: #e57373; }
+.backlog .task,
+.in-progress .task,
+.done .task,
+.trash .task {
+    border-left-color: #78858b;
+}
 
 .clear-btn {
-    background: #f78fa7;
+    background: #78858b; 
     width: 95%;
     text-align: center;
     padding: 10px;
