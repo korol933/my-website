@@ -1,5 +1,15 @@
 import {createElement} from '../framework/render.js';
 
+function createTaskListComponentTemplate(title, tasks = []) {
+  return `
+    <div class="column ${title.toLowerCase().replace(' ', '-')}">
+      <div class="tasks-container">
+        ${tasks.map(() => `<div class="task"></div>`).join('')}
+      </div>
+    </div>
+  `;
+}
+
 export default class TaskListComponent {
   constructor(title, tasks) {
     this._title = title;
@@ -8,14 +18,7 @@ export default class TaskListComponent {
   }
 
   getTemplate() {
-    return `
-      <div class="tasklist-component">
-        <div class="tasklist-component__tasks-container">
-          ${this._tasks.map(() => `<div class="task-component"></div>`).join('')}
-        </div>
-        <button class="tasklist-component__clear-btn">✖️ Очистить</button>
-      </div>
-    `;
+    return createTaskListComponentTemplate(this._title, this._tasks);
   }
 
   getElement() {

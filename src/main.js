@@ -13,11 +13,12 @@ render(new FormAddTaskComponent(), bodyContainer);
 const taskBoard = new TaskBoardComponent();
 render(taskBoard, bodyContainer);
 
+// Пример данных для колонок
 const columns = [
-  { title: 'Бэклог', tasks: Array(4).fill('') },
-  { title: 'В процессе', tasks: Array(4).fill('') },
-  { title: 'Готово', tasks: Array(4).fill('') },
-  { title: 'Корзина', tasks: Array(4).fill('') }
+  { title: 'Бэклог', tasks: ['Выучить JS', 'Выучить React', 'Сделать домашку'] },
+  { title: 'В процессе', tasks: ['Выпить сок', 'Попить воды'] },
+  { title: 'Готово', tasks: ['Позвонить маме', 'Погладить кота'] },
+  { title: 'Корзина', tasks: ['Сходить погулять', 'Прочитать Войну и Мир'] },
 ];
 
 const taskBoardElement = document.querySelector('.task-board');
