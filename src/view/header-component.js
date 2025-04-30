@@ -1,7 +1,9 @@
-import {createElement} from '../framework/render.js';
+import { createElement } from '../framework/render.js';
 
 function createHeaderComponentTemplate() {
-  return `<div class="header">Список задач</div>`;
+  return `
+    <div class="header">Список задач</div>
+  `;
 }
 
 export default class HeaderComponent {

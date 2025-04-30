@@ -1,31 +1,26 @@
-import {createElement} from '../framework/render.js';
+import { createElement } from '../framework/render.js';
 
-function createTaskListComponentTemplate(status) {
-  const titles = {
-    'backlog': 'Бэклог',
-    'inProgress': 'В процессе',
-    'done': 'Готово',
-    'trash': 'Корзина'
-  };
-
+function createTaskListComponentTemplate(title, tasks = []) {
   return `
-    <div class="column ${status}">
-      <div class="column-title">${titles[status]}</div>
-      <div class="task-container"></div>
-      ${status === 'trash' ? '<div class="clear-btn">✖️ Очистить</div>' : ''}
+    <div class="column ${title.toLowerCase().replace(' ', '-')}">
+      <div class="column-title">${title}</div>
+      <div id="${title.toLowerCase().replace(' ', '-')}-tasks">
+        ${tasks.map(task => `<div class="task">${task}</div>`).join('')}
+      </div>
     </div>
   `;
 }
 
 export default class TaskListComponent {
-  constructor(status) {
-    this.status = status;
+  constructor(title, tasks) {
+    this.title = title;
+    this.tasks = tasks;
   }
 
   getTemplate() {
-    return createTaskListComponentTemplate(this.status);
+    return createTaskListComponentTemplate(this.title, this.tasks);
   }
-
+  
   getElement() {
     if (!this.element) {
       this.element = createElement(this.getTemplate());

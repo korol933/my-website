@@ -1,4 +1,4 @@
-import {createElement} from '../framework/render.js';
+import { createElement } from '../framework/render.js';
 
 function createFormAddTaskComponentTemplate() {
   return `
@@ -16,7 +16,7 @@ export default class FormAddTaskComponent {
   getTemplate() {
     return createFormAddTaskComponentTemplate();
   }
-
+  
   getElement() {
     if (!this.element) {
       this.element = createElement(this.getTemplate());
