@@ -38,7 +38,6 @@ body {
 /* Обновлённые стили для колонок */
 .column {
   flex: 1;
-  background: transparent !important; /* Убираем фон */
   padding: 0 !important; /* Убираем внутренние отступы */
   min-height: auto !important; /* Убираем фиксированную высоту */
 }
