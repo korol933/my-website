@@ -41,7 +41,6 @@ body {
   padding: 15px;
   margin: 0 0 8px 0;
   border-radius: 10px;
-  border-left: 5px solid;
   align-items: center;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
@@ -78,6 +77,7 @@ body {
   background: white;
   padding: 15px;
   border-radius: 10px;
+  margin: 0 0 8px 0;
   min-height: 30px;
   border-left: 5px solid;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
