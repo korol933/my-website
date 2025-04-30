@@ -39,7 +39,6 @@ body {
 /* Обновлённые стили для колонок */
 .column {
   flex: 1;
-  background: #f5f5f5;
   padding: 15px;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -51,32 +50,30 @@ body {
   margin: 0 0 15px 0;
   border-radius: 5px;
   font-weight: bold;
-  text-align: left;
-  background: white;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  border-left: 5px solid;
+  text-align: center;
 }
 
 /* Цвета рамок для заголовков */
-.backlog .column-title { border-left-color: #78858b; }
-.processing .column-title { border-left-color: #42a5f5; }
-.done .column-title { border-left-color: #66bb6a; }
-.trash .column-title { border-left-color: #ef5350; }
+.backlog .column-title { background: #78858b; }
+.processing .column-title { background: #42a5f5; }
+.done .column-title { background: #66bb6a; }
+.trash .column-title { background: #ef5350; }
 
 /* Контейнер для задач внутри колонки */
 .tasks-container {
   display: flex;
   flex-direction: column;
-  gap: 8px; /* Расстояние между задачами */
+  gap: 10px; /* Расстояние между задачами */
 }
 
 /* Стили для задач */
 .task {
   background: white;
   padding: 15px;
+  margin-top: 15px;
   border-radius: 5px;
   border-left: 5px solid;
-  text-align: left;
+  text-align: center;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
