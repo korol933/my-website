@@ -19,6 +19,7 @@ body {
   font-weight: bold;
   border-radius: 10px;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .task-input {
@@ -35,17 +36,15 @@ body {
   margin-top: 20px;
 }
 
-/* Стили для колонок */
 .column {
   flex: 1;
   background: white;
   padding: 0;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  overflow: hidden; /* Для скругления углов у дочерних элементов */
+  overflow: hidden;
 }
 
-/* Стили для заголовков колонок */
 .column-title {
   padding: 15px;
   min-height: 30px;
@@ -55,15 +54,14 @@ body {
   font-weight: bold;
   color: white;
   margin: 0;
+  text-align: center;
 }
 
-/* Цвета для заголовков колонок */
 .backlog .column-title { background: #78858b; }
 .inProgress .column-title { background: #42a5f5; }
 .done .column-title { background: #66bb6a; }
 .trash .column-title { background: #ef5350; }
 
-/* Контейнер для задач */
 .tasks-container {
   padding: 15px;
   display: flex;
@@ -71,7 +69,6 @@ body {
   gap: 10px;
 }
 
-/* Стили для задач */
 .task {
   background: white;
   padding: 15px;
@@ -80,16 +77,17 @@ body {
   border-left: 5px solid;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   display: flex;
+  justify-content: center;
   align-items: center;
+  text-align: center;
+  word-break: break-word;
 }
 
-/* Цвета полосок для задач */
 .backlog .task { border-left-color: #78858b; }
 .inProgress .task { border-left-color: #42a5f5; }
 .done .task { border-left-color: #66bb6a; }
 .trash .task { border-left-color: #ef5350; }
 
-/* Стили для кнопки очистки */
 .clear-btn {
   background: #f78fa7;
   text-align: center;
@@ -103,7 +101,6 @@ body {
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-/* Дополнительные стили для формы ввода */
 .input-container {
   display: flex;
   gap: 10px;
