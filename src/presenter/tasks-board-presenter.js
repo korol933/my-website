@@ -1,6 +1,6 @@
 import { Status, StatusLabel } from '../const.js';
 import TaskBoardComponent from '../view/taskboard-component.js';
-import TaskListComponent from '../view/tasklist-component.js';
+import TaskComponent from '../view/task-component.js';
 import { render } from '../framework/render.js';
 import TaskListComponent from '../view/tasklist-component.js';
 
@@ -42,4 +42,5 @@ export default class TasksBoardPresenter {
       render(new TaskComponent({ task }), container);
     });
   }
+
 }
