@@ -1,27 +1,45 @@
-export class TasksBoardPresenter {
-  constructor({ container, initialTasks }) {
-    this.container = container;
-    this.taskModel = new TaskModel(initialTasks);
-    this.taskboardComponent = new TaskboardComponent();
-    this.tasklistComponent = new TasklistComponent();
+import { Status, StatusLabel } from '../const.js';
+import TaskBoardComponent from '../view/taskboard-component.js';
+import TaskListComponent from '../view/tasklist-component.js';
+import { render } from '../framework/render.js';
+import TaskListComponent from '../view/tasklist-component.js';
+
+export default class TasksBoardPresenter {
+  #boardContainer = null;
+  #tasksModel = null;
+  #tasksBoardComponent = null;
+  #boardTasks = [];
+
+  constructor([boardContainer, tasksModel]) {
+    this.#boardContainer = boardContainer;
+    this.#tasksModel = tasksModel;
+    this.#tasksBoardComponent = new TaskBoardComponent();
   }
 
   init() {
-    this.render();
+    this.#boardTasks = [...this.#tasksModel.tasks];
+    render(this.#tasksBoardComponent, this.#boardContainer);
+
+    this.#renderTaskLists();
   }
 
-  render() {
-    // Очищаем контейнер перед рендерингом
-    this.container.innerHTML = '';
-    
-    // Рендерим основные компоненты
-    this.container.append(this.taskboardComponent.element);
-    this.taskboardComponent.element.append(this.tasklistComponent.element);
+  #renderTaskLists() {
+    Object.values(Status).forEach((status) => {
+      const tasksListComponent = new TaskListComponent({
+        status: status,
+        label: StatusLabel[status]
+      });
+      
+      render(tasksListComponent, this.#tasksBoardComponent.element);
+      
+      const tasksForStatus = getTasksByStatus(this.#boardTasks, status);
+      this.#renderTasks(tasksForStatus, tasksListComponent.element);
+    });
+  }
 
-    // Рендерим задачи
-    this.taskModel.tasks.forEach(task => {
-      const taskComponent = new TaskComponent(task);
-      this.tasklistComponent.element.append(taskComponent.element);
+  #renderTasks(tasks, container) {
+    tasks.forEach((task) => {
+      render(new TaskComponent({ task }), container);
     });
   }
 }

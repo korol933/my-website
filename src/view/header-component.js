@@ -1,7 +1,19 @@
-import { AbstractComponent } from '../framework/abstract-component.js';
+import {createElement} from '../framework/render.js';
+import AbstractComponent from '../framework/abstract-component.js';
 
-export class HeaderComponent extends AbstractComponent {
-  get template() {
-    return '<header class="header"><h1>Task Board</h1></header>';
+function createHeaderComponentTemplate() {
+  return `<div class="header">Список задач</div>`;
+}
+
+export default class HeaderComponent extends AbstractComponent{
+  getTemplate() {
+    return createHeaderComponentTemplate();
+  }
+}
+export class TaskModel {
+  #boardtasks = tasks;
+
+  get tasks() {
+    return this.#boardtasks;  
   }
 }

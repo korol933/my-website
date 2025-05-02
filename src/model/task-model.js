@@ -1,41 +1,15 @@
-export class TaskModel {
-  #boardTasks = [];
+import { Status } from '../const.js';
 
-  constructor(initialTasks = []) {
-    this.#boardTasks = initialTasks;
+export default class TaskModel {
+  constructor(tasks) {
+    this._tasks = tasks;
   }
 
-  get tasks() {
-    return this.#boardTasks;
+  getTasks() {
+    return this._tasks;
   }
 
   getTasksByStatus(status) {
-    return this.#boardTasks.filter(task => task.status === status);
-  }
-
-  addTask(task) {
-    this.#boardTasks.push({
-      ...task,
-      status: task.status || 'backlog' // Статус по умолчанию
-    });
-  }
-
-  updateTaskStatus(taskId, newStatus) {
-    const task = this.#boardTasks.find(t => t.id === taskId);
-    if (task) {
-      task.status = newStatus;
-    }
-  }
-
-  deleteTask(taskId) {
-    this.#boardTasks = this.#boardTasks.filter(task => task.id !== taskId);
-  }
-
-  clearTasks() {
-    this.#boardTasks = [];
-  }
-
-  clearTasksByStatus(status) {
-    this.#boardTasks = this.#boardTasks.filter(task => task.status !== status);
+    return this._tasks.filter(task => task.status === status);
   }
 }

@@ -1,29 +1,29 @@
-import { AbstractComponent } from '../framework/abstract-component.js';
+import {createElement} from '../framework/render.js';
+import { tasks } from '../mock/task.js';
+import AbstractComponent from '../framework/abstract-component.js';
 
-export class FormAddTaskComponent extends AbstractComponent {
-  #submitHandler = null;
+function createFormAddTaskComponentTemplate() {
+  return `
+    <div class="task-input">
+      <div class="title">Новая задача</div>
+      <div class="input-container">
+        <input type="text" id="taskInput" placeholder="Название задачи...">
+        <button>+ Добавить</button>
+      </div>
+    </div>
+  `;
+}
 
-  get template() {
-    return `
-      <form class="add-task-form">
-        <input type="text" name="title" placeholder="Task title" required>
-        <textarea name="description" placeholder="Description"></textarea>
-        <button type="submit">Add Task</button>
-      </form>
-    `;
+export default class FormAddTaskComponent extends AbstractComponent {
+  getTemplate() {
+    return createFormAddTaskComponentTemplate();
   }
+}
 
-  setSubmitHandler(handler) {
-    this.#submitHandler = handler;
-    this.element.addEventListener('submit', (evt) => {
-      evt.preventDefault();
-      const formData = new FormData(evt.target);
-      const task = {
-        title: formData.get('title'),
-        description: formData.get('description')
-      };
-      handler(task);
-      evt.target.reset();
-    });
+export class TaskModel {
+  #boardtasks = tasks;
+
+  get tasks() {
+    return this.#boardtasks;  
   }
 }

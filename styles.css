@@ -115,7 +115,7 @@
   color: white;
 }
 
-[data-status="inProgress"] .task__status {
+[data-status="processing"] .task__status {
   background-color: #3498db;
   color: white;
 }
